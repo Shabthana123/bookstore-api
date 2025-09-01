@@ -1,6 +1,7 @@
 package com.codesimple.bookstore.bookstore_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.codesimple.bookstore.bookstore_api.service.BookService;
 
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class BookController {
@@ -22,7 +24,8 @@ public class BookController {
 	private BookService bookService; 
 	
 	@RequestMapping(value = "/books")
-	public List<Book> getBooks(@RequestParam(value = "yearOfPublication", required = false) Integer yop){
+	public List<Book> getBooks(@RequestParam(value = "yearOfPublications", required = false) Set<Integer> yop,
+			@RequestParam(value = "bookType",required = false) String bookType){
 		
 //		//db call
 //		// but here i call manually to check
@@ -34,7 +37,7 @@ public class BookController {
 				
 				
 				
-		return bookService.getBooks(yop);
+		return bookService.getBooks(yop, bookType);
 	}
 	
 	// need to state in the input    as from where it will get ex: request body
@@ -70,6 +73,11 @@ public class BookController {
 	public String deleteBook(@PathVariable("id") Integer bookId) {
 		
 		return bookService.deleteBook(bookId);
+	}
+	
+	@GetMapping("/raw/books")
+	public List<Book> getBooksByRawQuery(@RequestParam(value = "yop") Set<Integer> yop){
+		return bookService.getBooksByRawQuery(yop);
 	}
 
 }
