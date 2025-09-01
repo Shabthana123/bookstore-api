@@ -29,12 +29,17 @@ public class BookService {
 	
 			
 	//view or get or read 
-	public List<Book> getBooks(){
+	public List<Book> getBooks(Integer yop){
 		
 		List<Book> bookList = new ArrayList<>();
 		
-		bookRepository.findAll().forEach(book -> bookList.add(book));
+		if(yop == null) {
 		
+			bookRepository.findAll().forEach(book -> bookList.add(book));
+		}
+		else {
+			return bookRepository.findAllByYearOfPublication(yop);
+		}
 		
 		return bookList;
 		}
@@ -49,6 +54,7 @@ public class BookService {
 		
 	}
 	
+	// insert list of books
 	public List<Book> createBooks(List<Book> books){
 		
 		Iterable<Book> savedBooks = bookRepository.saveAll(books);

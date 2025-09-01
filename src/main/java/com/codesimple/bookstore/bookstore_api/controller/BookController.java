@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codesimple.bookstore.bookstore_api.entity.Book;
@@ -21,7 +22,7 @@ public class BookController {
 	private BookService bookService; 
 	
 	@RequestMapping(value = "/books")
-	public List<Book> getBooks(){
+	public List<Book> getBooks(@RequestParam(value = "yearOfPublication", required = false) Integer yop){
 		
 //		//db call
 //		// but here i call manually to check
@@ -33,7 +34,7 @@ public class BookController {
 				
 				
 				
-		return bookService.getBooks();
+		return bookService.getBooks(yop);
 	}
 	
 	// need to state in the input    as from where it will get ex: request body

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.codesimple.bookstore.bookstore_api.entity.Book;
 
+import java.util.List;
+
 @Repository    //  give  inputs 1st is entity class and 2nd is data type of primary key of entity
 public interface BookRepository extends CrudRepository<Book, Integer>{
 	
@@ -19,5 +21,6 @@ public interface BookRepository extends CrudRepository<Book, Integer>{
 	 *when give a book object into the repository class -> it store in the db -> when retrieve map into entity class and give back the list or string 
 	 * */
 	
+	List<Book> findAllByYearOfPublication(Integer yop);
 	
 }
