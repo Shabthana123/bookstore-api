@@ -1,7 +1,10 @@
 package com.codesimple.bookstore.bookstore_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codesimple.bookstore.bookstore_api.entity.Book;
@@ -31,6 +34,26 @@ public class BookController {
 				
 				
 		return bookService.getBooks();
+	}
+	
+	// need to state in the input    as from where it will get ex: request body
+	@RequestMapping(value = "/books", method = RequestMethod.POST)
+	public Book createBook(@RequestBody Book book) {
+		
+		return bookService.createBook(book);
+	}
+	
+	//multiple books insert 
+	@RequestMapping(value = "/books/batch", method = RequestMethod.POST)
+	public List<Book> createBooks(@RequestBody List<Book> books){
+		
+		return bookService.createBooks(books);
+	}
+	
+	@RequestMapping(value = "/books/{id}")
+	public Book getBook(@PathVariable("id") Integer bookId) {
+		 
+		return bookService.getBookbyId(bookId);
 	}
 
 }

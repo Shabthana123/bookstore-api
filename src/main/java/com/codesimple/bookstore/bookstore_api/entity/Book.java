@@ -1,6 +1,8 @@
 package com.codesimple.bookstore.bookstore_api.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 //import jakarta.persistence.Table;
 
@@ -8,6 +10,11 @@ import jakarta.persistence.Id;
 //@Table(name="book") // if it different table name in the data base
 public class Book {
 	@Id  // to mark primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // Hibernate will check   // here GenerationType.AUTO might caused some error sometimes
+	/*
+	 * AUTO lets Hibernate decide the best generation strategy based on the dialect.
+	 * In MySQL, this can sometimes cause issues (sequence tables not supported properly
+	 */
 	private int id;
 	private String name;
 	private String des;

@@ -1,13 +1,15 @@
 package com.codesimple.bookstore.bookstore_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import org.springframework.web.server.ResponseStatusException;
 
 import com.codesimple.bookstore.bookstore_api.entity.Book;
 import com.codesimple.bookstore.bookstore_api.resource.BookRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service    // when state @service annotation spring automatically create a object for that and manage that so in other package/class no need to use new too create object. can use directly
@@ -38,9 +40,35 @@ public class BookService {
 		}
 		
 		
-	//create
+	//insert
+	//single book insert
+	public Book createBook(Book book) {
+		
+		// validate each field and save
+		return bookRepository.save(book);
+		
+	}
+	
+	public List<Book> createBooks(List<Book> books){
+		
+		Iterable<Book> savedBooks = bookRepository.saveAll(books);
+			
+		List<Book> booksList = new ArrayList<>();
+		
+		savedBooks.forEach(book -> booksList.add(book));
+		
+		 return booksList;
+	}
+	
+	public Book getBookbyId(Integer bookId) {
+		
+		return bookRepository.findById(bookId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found with id: "+bookId));
+	}
 	
 	//update
+//	public void updateBook(Integer id) {
+//		Book book = bookRepository.findAllById(id);
+//	}
 	
 	//delete
 	
