@@ -62,15 +62,26 @@ public class BookService {
 	
 	public Book getBookbyId(Integer bookId) {
 		
-		return bookRepository.findById(bookId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found with id: "+bookId));
+		return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found with id: "+ bookId));
 	}
 	
 	//update
-//	public void updateBook(Integer id) {
-//		Book book = bookRepository.findAllById(id);
-//	}
+	public Book updateBook(Book updatedContent) {
+		
 	
+		return bookRepository.save(updatedContent);
+		
+			
+	}
 	//delete
+	public String deleteBook(Integer bookId) {
+		// TODO Auto-generated method stub
+		
+				
+		bookRepository.deleteById(bookId);
+		
+		return "Book with id "+ bookId + " is successfully deleted";
+	}
 	
 	
 }

@@ -54,6 +54,21 @@ public class BookController {
 	public Book getBook(@PathVariable("id") Integer bookId) {
 		 
 		return bookService.getBookbyId(bookId);
+		
+	}
+	
+	// update a data
+	@RequestMapping(value = "/books", method = RequestMethod.PUT)
+	public Book updateBook(@RequestBody Book  updatedContent) {
+		
+		return bookService.updateBook(updatedContent);
+	}
+	
+	//detele a book
+	@RequestMapping(value = "books/{id}", method = RequestMethod.DELETE)
+	public String deleteBook(@PathVariable("id") Integer bookId) {
+		
+		return bookService.deleteBook(bookId);
 	}
 
 }
