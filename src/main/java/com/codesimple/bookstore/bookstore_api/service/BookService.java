@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.codesimple.bookstore.bookstore_api.entity.Book;
 import com.codesimple.bookstore.bookstore_api.resource.BookRepository;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -69,7 +70,7 @@ public class BookService {
 		 return booksList;
 	}
 	
-	public Book getBookbyId(Integer bookId) {
+	public Book getBookbyId(Long bookId) {
 		
 		return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found with id: "+ bookId));
 	}
@@ -83,7 +84,7 @@ public class BookService {
 			
 	}
 	//delete
-	public String deleteBook(Integer bookId) {
+	public String deleteBook(Long bookId) {
 		// TODO Auto-generated method stub
 		
 				

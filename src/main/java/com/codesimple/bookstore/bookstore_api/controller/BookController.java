@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codesimple.bookstore.bookstore_api.entity.Book;
 import com.codesimple.bookstore.bookstore_api.service.BookService;
 
-
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +55,7 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/books/{id}")
-	public Book getBook(@PathVariable("id") Integer bookId) {
+	public Book getBook(@PathVariable("id") Long bookId) {
 		 
 		return bookService.getBookbyId(bookId);
 		
@@ -70,7 +70,7 @@ public class BookController {
 	
 	//detele a book
 	@RequestMapping(value = "books/{id}", method = RequestMethod.DELETE)
-	public String deleteBook(@PathVariable("id") Integer bookId) {
+	public String deleteBook(@PathVariable("id") Long bookId) {
 		
 		return bookService.deleteBook(bookId);
 	}

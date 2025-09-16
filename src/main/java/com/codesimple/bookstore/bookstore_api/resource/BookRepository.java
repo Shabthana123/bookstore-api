@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.codesimple.bookstore.bookstore_api.entity.Book;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
 @Repository    //  give  inputs 1st is entity class and 2nd is data type of primary key of entity
-public interface BookRepository extends CrudRepository<Book, Integer>{
+public interface BookRepository extends CrudRepository<Book, Long>{
 	
 //	CRUD - create, read update, delete oprations
 //	save to db	
