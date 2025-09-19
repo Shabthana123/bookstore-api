@@ -35,6 +35,7 @@ public class Author {
 	@JdbcTypeCode(SqlTypes.TIMESTAMP)
 	private LocalDateTime updatedAt;
 	
+	/* this can create a join table automatically with requirements
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -42,6 +43,7 @@ public class Author {
 	@ManyToMany(mappedBy = "authors")
 	private Set <Book> books = new HashSet<Book>();
 	
+	*/
 	
 	public Author() {
 		
@@ -55,7 +57,7 @@ public class Author {
 		this.gender = gender;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.books = books;
+//		this.books = books;
 	}
 	
 	@PrePersist
@@ -112,12 +114,5 @@ public class Author {
 		this.updatedAt = updatedAt;
 	}
 
-	public Set<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(Set<Book> books) {
-		this.books = books;
-	}
 	
 }

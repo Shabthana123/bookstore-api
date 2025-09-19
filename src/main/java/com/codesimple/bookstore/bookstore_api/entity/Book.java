@@ -57,6 +57,9 @@ public class Book {
 	private Set<Author> authors = new HashSet<>();
 	*/
 	
+	
+	/* this can create a join table automatically with requirements
+	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -74,7 +77,9 @@ public class Book {
 							name = "fk_book_author__author_id",
 							foreignKeyDefinition = "FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE ON UPDATE CASCADE")),
 			uniqueConstraints = @UniqueConstraint(columnNames = {"book_id", "author_id"})) // to make combination of both foreign keys as primary key
-		private Set<Author> authors = new HashSet<>();
+	private Set<Author> authors = new HashSet<>();
+		
+	*/
 	
 	public Book() {
 		
@@ -92,7 +97,7 @@ public class Book {
 		this.bookType = bookType;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.authors = authors;
+//		this.authors = authors;
 	}
 
 
